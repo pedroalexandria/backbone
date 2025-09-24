@@ -1,0 +1,243 @@
+import React, { useState } from 'react';
+import { Link, NavLink, Outlet } from 'react-router-dom';
+import { cn } from '../../utils/cn';
+
+export function RootLayout() {
+  const [expandedSidebar, setExpandedSidebar] = useState(false);
+  const [selectedAgent, setSelectedAgent] = useState<string | null>(null);
+
+  const agentIcons = [
+    { id: 'ad', icon: '/icones/AD.png', name: 'AD' },
+    { id: 'ai1', icon: '/icones/AI Assistant-1.png', name: 'AI Assistant 1' },
+    { id: 'campaigns', icon: '/icones/Campaigns.png', name: 'Campaigns' },
+    { id: 'customerservice', icon: '/icones/CustomerService.png', name: 'Customer Service' },
+    { id: 'fullfilment', icon: '/icones/Fullfilment.png', name: 'Fullfilment' },
+    { id: 'handling', icon: '/icones/Handling.png', name: 'Handling' },
+    { id: 'insights', icon: '/icones/Insights.png', name: 'Insights' },
+    { id: 'offers', icon: '/icones/Offers.png', name: 'Offers' },
+    { id: 'productrec', icon: '/icones/ProductRec.png', name: 'Product Rec' },
+    { id: 'salesassistant', icon: '/icones/SalesAssistant.png', name: 'Sales Assistant' },
+    { id: 'search', icon: '/icones/Search.png', name: 'Search' },
+    { id: 'thirdparty', icon: '/icones/ThirdParty.png', name: 'Third Party' },
+    { id: 'visualeditor', icon: '/icones/VisualEditor.png', name: 'Visual Editor' },
+    { id: 'vtexhelp', icon: '/icones/VTEXHelp.png', name: 'VTEX Help' },
+    { id: 'projects', icon: '/icones/Projects.png', name: 'Projects' },
+  ];
+
+  const handleAgentClick = (agentId: string) => {
+    setSelectedAgent(agentId);
+    setExpandedSidebar(true);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Agent Icons Sidebar */}
+      <aside className="w-20 bg-white border-r border-gray-200 flex flex-col items-center fixed left-0 top-0 h-full z-10" style={{ paddingLeft: '24px', paddingRight: '24px' }}>
+        {/* Logo */}
+        <div style={{ marginTop: '16px', marginBottom: '24px' }}>
+          <img 
+            src="/icones/Logo.png" 
+            alt="Logo"
+            className="w-8 h-8"
+            onError={(e) => {
+              console.error('Failed to load logo');
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        </div>
+
+        {/* Agent Icons */}
+        <div className="flex flex-col gap-2">
+          {agentIcons.slice(0, -2).map((agent) => (
+            <button
+              key={agent.id}
+              onClick={() => handleAgentClick(agent.id)}
+              className={cn(
+                "w-10 h-10 rounded-lg flex items-center justify-center hover:bg-gray-100 transition-colors",
+                selectedAgent === agent.id && "bg-blue-100"
+              )}
+            >
+              <img 
+                src={`${agent.icon}?v=${Date.now()}`} 
+                alt={agent.name}
+                className="w-7 h-7"
+                onError={(e) => {
+                  console.error('Failed to load icon:', agent.icon);
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </button>
+          ))}
+          
+          {/* Separator Line */}
+          <div className="w-full h-px bg-gray-300 my-2" style={{ backgroundColor: '#E0E0E0' }}></div>
+          
+          {/* Last two icons */}
+          {agentIcons.slice(-2).map((agent) => (
+            <button
+              key={agent.id}
+              onClick={() => handleAgentClick(agent.id)}
+              className={cn(
+                "w-10 h-10 rounded-lg flex items-center justify-center hover:bg-gray-100 transition-colors",
+                selectedAgent === agent.id && "bg-blue-100"
+              )}
+            >
+              <img 
+                src={`${agent.icon}?v=${Date.now()}`} 
+                alt={agent.name}
+                className="w-7 h-7"
+                onError={(e) => {
+                  console.error('Failed to load icon:', agent.icon);
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </button>
+          ))}
+        </div>
+
+        {/* Bottom Icons */}
+        <div className="mt-auto flex flex-col gap-2" style={{ marginBottom: '24px' }}>
+          <button className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors">
+            <img 
+              src={`/icones/MagnifyingGlass.png?v=${Date.now()}`} 
+              alt="Search"
+              className="w-5 h-5"
+              onError={(e) => {
+                console.error('Failed to load search icon');
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </button>
+          <button className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors relative">
+            <img 
+              src={`/icones/Notification.png?v=${Date.now()}`} 
+              alt="Notifications"
+              className="w-5 h-5"
+              onError={(e) => {
+                console.error('Failed to load bell icon');
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+            <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
+          </button>
+          <button className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors">
+            <img 
+              src={`/icones/User.png?v=${Date.now()}`} 
+              alt="User Profile"
+              className="w-7 h-7"
+              onError={(e) => {
+                console.error('Failed to load user icon');
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </button>
+        </div>
+      </aside>
+
+      {/* Expanded Tasks Sidebar */}
+      {expandedSidebar && (
+        <aside className="w-80 bg-white border-r border-gray-200 flex flex-col fixed left-20 top-0 h-full z-20">
+          {/* Header */}
+          <div className="p-6 border-b border-gray-200">
+            <div className="flex items-center justify-between mb-4">
+              <span className="faststore-title">FastStore Visual Editor</span>
+              <button 
+                onClick={() => setExpandedSidebar(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* New Task Button */}
+            <button className="w-full bg-gray-200 text-gray-700 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-300 transition-colors">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+              New task
+            </button>
+          </div>
+
+          {/* Tabs */}
+          <div className="px-6 py-4 border-b border-gray-200">
+            <div className="flex gap-6">
+              <button className="text-blue-600 border-b-2 border-blue-600 pb-2 font-medium">Tasks</button>
+              <button className="text-gray-500 pb-2 font-medium hover:text-gray-700">Pinned</button>
+              <button className="text-gray-500 pb-2 font-medium hover:text-gray-700">Queues</button>
+            </div>
+          </div>
+
+          {/* Task Lists */}
+          <div className="flex-1 overflow-y-auto px-6 py-4">
+            {/* Pending Tasks */}
+            <div className="mb-6">
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">Pending tasks</h3>
+              <div className="space-y-2">
+                <TaskItem title="Develop a social media marketing str..." hasNotification={true} />
+                <TaskItem title="Update user onboarding process bas..." hasNotification={true} />
+              </div>
+            </div>
+
+            {/* Today */}
+            <div className="mb-6">
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">Today</h3>
+              <div className="space-y-2">
+                <TaskItem title="New task..." hasNotification={false} />
+                <TaskItem title="[Sep-07-25] Task suggestions (8)" hasNotification={true} />
+              </div>
+            </div>
+
+            {/* Yesterday */}
+            <div className="mb-6">
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">Yesterday</h3>
+              <div className="space-y-2">
+                <TaskItem title="Evaluate website traffic data for Q3" />
+                <TaskItem title="Create content calendar for upcoming..." />
+                <TaskItem title="Conduct user surveys to gather feedb..." />
+                <TaskItem title="Analyze competitor strategies and mar..." />
+                <TaskItem title="Develop a social media marketing str..." hasNotification={true} />
+                <TaskItem title="Optimize landing pages for better conv..." hasNotification={true} />
+                <TaskItem title="Prepare a presentation on the impact o..." />
+                <TaskItem title="Set up A/B testing for email campaigns" />
+                <TaskItem title="Review customer service interactions f..." hasNotification={true} />
+                <TaskItem title="Update user onboarding process bas..." hasNotification={true} />
+                <TaskItem title="Collaborate with design team for websi..." />
+                <TaskItem title="Monitor ad performance and adjust bu..." hasNotification={true} />
+                <TaskItem title="Plan a webinar series to engage potent..." />
+                <TaskItem title="Create a report on sales performance..." />
+                <TaskItem title="Initiate a loyalty program to enhance c..." />
+                <TaskItem title="Review and update privacy policy in lig..." />
+                <TaskItem title="Conduct a SWOT analysis for the upco..." />
+                <TaskItem title="Launch a referral program to incentiviz..." />
+                <TaskItem title="Research and implement new tools for..." />
+                <TaskItem title="Host focus groups to test new product..." />
+              </div>
+            </div>
+          </div>
+        </aside>
+      )}
+
+      {/* Main Content */}
+      <main className="flex-1 bg-white flex items-center justify-center" style={{ marginLeft: expandedSidebar ? '400px' : '80px' }}>
+        <div className="text-center">
+          <h1 className="text-4xl font-light text-gray-900">Home do agente</h1>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+function TaskItem({ title, hasNotification = false }: { title: string; hasNotification?: boolean }) {
+  return (
+    <div className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
+      <span className="text-sm text-gray-700 flex-1 truncate">{title}</span>
+      {hasNotification && (
+        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+      )}
+    </div>
+  );
+}
+
+

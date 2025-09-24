@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900 antialiased;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.container-xl {
+  @apply mx-auto w-full max-w-[1920px];
+}
+
+.faststore-title {
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 600;
+  color: #111827;
+  letter-spacing: -0.04em;
+}
+
+.new-task-button {
+  height: 32px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  background-color: #eaeaea;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.task-item {
+  padding: 6px 8px;
+  margin-bottom: 1px;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+.tab-button {
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  padding-bottom: 4px;
+}
+
+.tabs-container {
+  height: 32px;
+}
+
+.tab-button.active {
+  color: #1f1f1f;
+  border-bottom-color: #1f1f1f;
+}
+
+.section-title {
+  color: #999999;
+  font-weight: 500;
+  font-size: 14px;
+  padding-left: 8px;
+}
+
+/* Global button hover */
+button:hover {
+  background-color: #eaeaea !important;
+}
+
+button:active,
+button:focus {
+  background-color: #eaeaea !important;
+}
+
+/* Override for agent icons specifically */
+aside .agent-icon:hover,
+aside .agent-icon:active,
+aside .agent-icon:focus {
+  background-color: #eaeaea !important;
+}
+
+/* Close button - no background hover */
+.close-button:hover {
+  background-color: transparent !important;
+}
+
+.close-button:active,
+.close-button:focus {
+  background-color: transparent !important;
+}
+
+/* Tab buttons - only text hover */
+.tab-button:hover {
+  background-color: transparent !important;
+  color: #1f1f1f !important;
+}
+
+/* Agent icons and task items - specific hover */
+.agent-icon:hover,
+.agent-icon:active,
+.agent-icon:focus {
+  background-color: #eaeaea !important;
+}
+
+.agent-icon.selected {
+  background-color: #eaeaea !important;
+}
+
+/* Override any Tailwind blue classes */
+.agent-icon.bg-blue-100,
+.agent-icon.bg-blue-50,
+.agent-icon.bg-blue-200 {
+  background-color: #eaeaea !important;
+}
+
+.task-item:hover,
+.task-item:active,
+.task-item:focus {
+  background-color: #eaeaea !important;
+}
+
+/* Sidebar animations */
+.sidebar-enter {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.sidebar-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.sidebar-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.sidebar-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.15s ease-in, opacity 0.15s ease-in;
+}
+
+/* Main content animation */
+.main-content {
+  transition: margin-left 0.2s ease-out;
+}
