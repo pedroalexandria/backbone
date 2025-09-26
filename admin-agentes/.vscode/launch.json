@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-chrome",
+      "request": "launch",
+      "name": "Vite: Launch Chrome",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/admin-agentes",
+      "cwd": "${workspaceFolder}/admin-agentes",
+      "preLaunchTask": "npm: dev (Vite)"
+    }
+  ]
+}
