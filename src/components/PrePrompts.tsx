@@ -22,14 +22,7 @@ export const PrePrompts: React.FC<PrePromptsProps> = ({ onPromptClick }) => {
           <button
             key={index}
             onClick={() => onPromptClick(prompt)}
-            className="px-3 py-2 rounded-[12px] transition-colors text-sm font-medium preprompt-button"
-            style={{
-              backgroundColor: 'var(--bg-tertiary)',
-              color: '#1F1F1F',
-              letterSpacing: '-0.01em',
-              fontFamily: 'Inter, sans-serif',
-              fontWeight: 500
-            }}
+            className="preprompt-button rounded-lg"
           >
             {prompt}
           </button>

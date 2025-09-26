@@ -1,6 +1,7 @@
 export { AgentIcon } from './AgentIcon';
 export { AgentSidebar } from './AgentSidebar';
 export { ExpandedSidebar } from './ExpandedSidebar';
+export { LoadingSpinner } from './LoadingSpinner';
 export { NavigationIcon } from './NavigationIcon';
 export { TaskItem } from './TaskItem';
 export { AgentHeader } from './AgentHeader';
@@ -8,3 +9,5 @@ export { PromptInput } from './PromptInput';
 export { PrePrompts } from './PrePrompts';
 export { PinnedSection } from './PinnedSection';
 export { ThemeToggle } from './ThemeToggle';
+export { TypingEffect } from './TypingEffect';
+export { TypingIndicator } from './TypingIndicator';
