@@ -16,7 +16,7 @@ export function Sidebar({ agents, selectedAgentId, collapsed, onSelectAgent, onT
   return (
     <aside className={clsx('sidebar-root', collapsed ? 'w-20' : 'w-80')} aria-label="Agentes">
       <div className="flex items-center justify-between px-3 py-3">
-        <div className={clsx('text-sm font-semibold', collapsed && 'sr-only')}>Agentes</div>
+        <div className={clsx('typo-subtitle', collapsed && 'sr-only')}>Agentes</div>
         <button type="button" className={clsx('icon-button', collapsed && 'mx-auto')} onClick={onToggleCollapse} aria-label="Alternar sidebar">
           <span className="block h-1 w-5 bg-gray-400 rounded" />
         </button>

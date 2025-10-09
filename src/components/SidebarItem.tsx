@@ -31,8 +31,8 @@ export function SidebarItem({ agent, selected, collapsed, onClick }: Props) {
       />
       {!collapsed && (
         <div className="ml-3 text-left">
-          <div className="text-sm font-medium leading-5">{agent.name}</div>
-          <div className="text-xs text-gray-500 leading-4">{agent.role}</div>
+          <div className="typo-subtitle">{agent.name}</div>
+          <div className="typo-body-sm text-gray-500">{agent.role}</div>
         </div>
       )}
     </button>

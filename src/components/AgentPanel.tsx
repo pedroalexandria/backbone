@@ -9,7 +9,7 @@ export function AgentPanel({ selectedAgentId }: Props) {
   const tasks = getAgentTasks(selectedAgentId);
   return (
     <div className="agent-panel-root">
-      <div className="section-header">Tarefas</div>
+      <div className="typo-label text-gray-500">Tarefas</div>
       <ul className="mt-3 space-y-2">
         {tasks.slice(0, 5).map((t) => (
           <li key={t.id} className="task-row">

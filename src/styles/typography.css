@@ -1,0 +1,12 @@
+/* Typography tokens */
+@layer components {
+  .typo-display { @apply text-3xl leading-9 font-semibold tracking-tight; }
+  .typo-h1 { @apply text-2xl leading-8 font-semibold; }
+  .typo-h2 { @apply text-xl leading-7 font-semibold; }
+  .typo-title { @apply text-base leading-6 font-semibold; }
+  .typo-subtitle { @apply text-sm leading-5 font-medium; }
+  .typo-body { @apply text-sm leading-6; }
+  .typo-body-sm { @apply text-xs leading-5; }
+  .typo-label { @apply text-xs leading-5 font-medium uppercase tracking-wide; }
+  .typo-caption { @apply text-xs leading-4; }
+}
