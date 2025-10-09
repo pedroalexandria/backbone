@@ -23,6 +23,11 @@ export default {
           700: '#1D4ED8',
           800: '#1E40AF',
           900: '#1E3A8A'
+        },
+        magenta: {
+          50: '#FFE5F0',
+          600: '#F50057',
+          700: '#C51162'
         }
       },
       spacing: {
@@ -30,6 +35,9 @@ export default {
       },
       borderRadius: {
         xl: '1rem'
+      },
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif']
       }
     }
   },
